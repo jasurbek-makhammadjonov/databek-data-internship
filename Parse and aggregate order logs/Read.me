@@ -1,0 +1,40 @@
+# Task 1: Revenue per Customer per Month
+
+A Python script that reads `orders.csv`, skips invalid rows (and reports them),
+and prints revenue per customer per month, sorted by revenue (highest first).
+
+## Input
+
+`orders.csv` with columns: `order_id`, `customer_id`, `amount`, `created_at`.
+
+## Invalid rows
+
+A row is skipped and reported (with line number and reason) if:
+
+- `order_id` or `customer_id` is missing
+- `order_id` is a duplicate
+- `amount` is not a number, or not positive
+- `created_at` is not a valid date (`YYYY-MM-DD` or `YYYY-MM-DD HH:MM:SS`)
+
+## How to run
+
+```bash
+python revenue_report.py            # uses orders.csv
+python revenue_report.py other.csv  # or pass a file path
+```
+
+No external libraries needed (Python standard library only).
+
+## Example output
+
+```
+customer_id   month          revenue
+------------------------------------
+C102          2024-03        1500.00
+C101          2024-01         980.50
+...
+
+Skipped 6 invalid row(s):
+  line 6: amount is not a number: 'abc'
+  ...
+```
