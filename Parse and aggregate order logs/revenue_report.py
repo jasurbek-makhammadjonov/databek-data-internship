@@ -1,9 +1,3 @@
-"""Revenue per customer per month.
-
-Reads orders.csv (order_id, customer_id, amount, created_at), skips invalid
-rows (and reports them), then prints revenue per customer per month,
-sorted by revenue (highest first).
-"""
 
 import csv
 import sys
@@ -15,7 +9,6 @@ DATE_FORMATS = ["%Y-%m-%d", "%Y-%m-%d %H:%M:%S", "%Y-%m-%dT%H:%M:%S"]
 
 
 def parse_date(value):
-    """Return a datetime, or None if the value matches no known format."""
     for fmt in DATE_FORMATS:
         try:
             return datetime.strptime(value, fmt)
@@ -25,7 +18,6 @@ def parse_date(value):
 
 
 def validate_row(row, seen_order_ids):
-    """Return (clean_values, None) if valid, or (None, reason) if invalid."""
     order_id = (row["order_id"] or "").strip()
     customer_id = (row["customer_id"] or "").strip()
     amount_raw = (row["amount"] or "").strip()

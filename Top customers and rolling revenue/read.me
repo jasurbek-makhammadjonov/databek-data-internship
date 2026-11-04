@@ -1,0 +1,105 @@
+# Shop SQL Analytics
+
+Kichik onlayn do'kon (`shop`) ma'lumotlar bazasi uchun Python skripti. Skript o'zi **fake dataset yaratadi**, uni SQLite bazasiga yozadi va to'rtta tahliliy SQL so'rovni bajarib, natijani konsolga chiqaradi.
+
+## Nimalar bor
+
+| # | So'rov | Ishlatilgan texnikalar |
+|---|--------|------------------------|
+| 1 | Oylik daromad | `JOIN`, `GROUP BY`, `strftime` |
+| 2 | Har oy bo'yicha top-3 mijoz | CTE, `ROW_NUMBER() OVER (PARTITION BY ...)` |
+| 3 | 7 kunlik rolling (harakatlanuvchi) daromad | rekursiv CTE (kalendar), `LEFT JOIN`, `ROWS BETWEEN 6 PRECEDING AND CURRENT ROW` |
+| 4 | Buyurtmasi yo'q mijozlar | anti-join (`LEFT JOIN ... IS NULL`) |
+
+> Barcha daromad hisoblarida `cancelled` statusidagi buyurtmalar hisobga olinmaydi.
+
+## Ma'lumotlar bazasi sxemasi
+
+```
+customers(customer_id PK, name, email, city, created_at)
+products(product_id PK, name, category, price)
+orders(order_id PK, customer_id FK, order_date, status)
+order_items(order_item_id PK, order_id FK, product_id FK, quantity, unit_price)
+```
+
+Bog'lanishlar:
+
+- `orders.customer_id` → `customers.customer_id`
+- `order_items.order_id` → `orders.order_id`
+- `order_items.product_id` → `products.product_id`
+
+## Fake ma'lumot
+
+Skript har ishga tushganda bazani noldan qayta yaratadi:
+
+- 40 ta mijoz (shaharlar va ismlar tasodifiy)
+- 9 ta mahsulot (Electronics, Books, Home kategoriyalari)
+- 400 ta buyurtma, sanalar 2025-01-01 dan 2025-06-30 gacha
+- statuslar: `completed` (70%), `shipped` (20%), `cancelled` (10%)
+- har buyurtmada 1-4 ta qator
+- oxirgi 6 ta mijoz **ataylab buyurtmasiz** qoldiriladi, shunda 4-so'rov natija qaytaradi
+
+Natijalar takrorlanishi uchun `random.seed(42)` o'rnatilgan.
+
+## Talablar
+
+- Python 3.8+
+- SQLite 3.25+ (window funksiyalar uchun; Python bilan birga keladi)
+- `pandas`
+
+```bash
+pip install pandas
+```
+
+## Ishga tushirish
+
+```bash
+python shop_queries.py
+```
+
+Skript:
+
+1. `shop.db` faylini yaratadi (mavjud jadvallar o'chirilib, qayta yaratiladi)
+2. Fake ma'lumotlarni to'ldiradi
+3. To'rtta so'rovni ketma-ket bajarib, natijalarni jadval ko'rinishida chop etadi (3-so'rov uchun oxirgi 10 qator)
+
+## Natija namunasi
+
+```
+=== 1) Oylik daromad ===
+  month  revenue
+2025-01  13485.0
+2025-02  11055.0
+...
+
+=== 4) Buyurtmasiz mijozlar ===
+ customer_id            name      city
+          35  Dilnoza Aliyev  Namangan
+...
+```
+
+## Fayl tuzilishi
+
+```
+.
+├── shop_queries.py   # asosiy skript (schema, fake data, 4 ta so'rov)
+├── README.md
+└── shop.db           # skript ishga tushganda yaratiladi
+```
+
+## Kod tuzilishi
+
+- `SCHEMA` — jadvallarni yaratuvchi DDL
+- `fill_fake_data()` — fake ma'lumot generatori
+- `Q1_...` – `Q4_...` — to'rtta SQL so'rov (alohida o'zgaruvchilar sifatida)
+- `main()` — bazani tayyorlaydi, so'rovlarni bajaradi va natijani chiqaradi
+
+## Boshqa DB'ga ko'chirish (masalan, PostgreSQL)
+
+SQL asosan standart, faqat quyidagilarni almashtirish kerak:
+
+| SQLite | PostgreSQL |
+|--------|------------|
+| `strftime('%Y-%m', order_date)` | `to_char(order_date, 'YYYY-MM')` |
+| rekursiv CTE kalendar | `generate_series(min_date, max_date, '1 day')` |
+| `date(day, '+1 day')` | `day + INTERVAL '1 day'` |

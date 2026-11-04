@@ -1,40 +1,114 @@
-# Task 1: Revenue per Customer per Month
+# Revenue per Customer per Month
 
-A Python script that reads `orders.csv`, skips invalid rows (and reports them),
-and prints revenue per customer per month, sorted by revenue (highest first).
+`orders.csv` faylini o'qib, har bir mijoz uchun **oylik daromadni** hisoblaydigan Python skripti. Noto'g'ri qatorlarni o'tkazib yuboradi va ularni sababi bilan birga alohida hisobot qiladi. Natija daromad bo'yicha kamayish tartibida chiqariladi.
 
-## Input
+## Imkoniyatlar
 
-`orders.csv` with columns: `order_id`, `customer_id`, `amount`, `created_at`.
+- CSV'ni o'qiydi va ustunlar mavjudligini tekshiradi
+- Har bir qatorni validatsiya qiladi, noto'g'ri qatorlarni o'tkazib yuboradi
+- `(mijoz, oy)` juftligi bo'yicha `amount` yig'indisini hisoblaydi
+- Natijani eng yuqori daromaddan boshlab chop etadi
+- Oxirida o'tkazib yuborilgan qatorlar ro'yxatini (satr raqami va sababi bilan) chiqaradi
 
-## Invalid rows
+## Talablar
 
-A row is skipped and reported (with line number and reason) if:
+- Python 3.6+
+- Faqat standart kutubxona (`csv`, `sys`, `collections`, `datetime`), qo'shimcha o'rnatish shart emas
 
-- `order_id` or `customer_id` is missing
-- `order_id` is a duplicate
-- `amount` is not a number, or not positive
-- `created_at` is not a valid date (`YYYY-MM-DD` or `YYYY-MM-DD HH:MM:SS`)
+## Kirish fayli formati
 
-## How to run
+Fayl UTF-8 kodlashda bo'lishi va birinchi qatorda sarlavha (header) bo'lishi kerak. Majburiy ustunlar:
+
+| Ustun | Tavsif |
+|-------|--------|
+| `order_id` | buyurtma identifikatori (takrorlanmasligi kerak) |
+| `customer_id` | mijoz identifikatori |
+| `amount` | buyurtma summasi (musbat son) |
+| `created_at` | buyurtma sanasi |
+
+Qo'shimcha ustunlar bo'lsa, ular e'tiborga olinmaydi.
+
+Qo'llab-quvvatlanadigan sana formatlari:
+
+- `2025-01-05`
+- `2025-01-05 14:30:00`
+- `2025-01-05T14:30:00`
+
+Namuna:
+
+```csv
+order_id,customer_id,amount,created_at
+1,C001,120.50,2025-01-05
+2,C002,80.00,2025-01-12 14:30:00
+3,C001,45.25,2025-01-20T09:15:00
+```
+
+## Ishga tushirish
+
+Skript faylini, masalan, `revenue_report.py` nomi bilan saqlang, so'ng:
 
 ```bash
-python revenue_report.py            # uses orders.csv
-python revenue_report.py other.csv  # or pass a file path
+# orders.csv joriy papkada bo'lsa
+python revenue_report.py
+
+# boshqa fayl yo'li bilan
+python revenue_report.py data/my_orders.csv
 ```
 
-No external libraries needed (Python standard library only).
+## Validatsiya qoidalari
 
-## Example output
+Quyidagi holatlardan birortasi uchraganda qator **o'tkazib yuboriladi** va oxirgi hisobotga yoziladi:
+
+| Sabab | Xabar |
+|-------|-------|
+| `order_id` bo'sh | `missing order_id` |
+| `customer_id` bo'sh | `missing customer_id` |
+| `order_id` oldin uchragan | `duplicate order_id '...'` |
+| `amount` son emas | `amount is not a number: '...'` |
+| `amount` 0 yoki manfiy | `amount must be positive: ...` |
+| sana formati noma'lum | `invalid created_at: '...'` |
+
+Takroriy `order_id` bo'lsa, faqat **birinchi** (to'g'ri) qator hisobga olinadi.
+
+## Natija namunasi
+
+Yuqoridagi qoidalarni ko'rsatuvchi namunaviy fayl bilan olingan haqiqiy natija:
 
 ```
+Revenue per customer per month
 customer_id   month          revenue
 ------------------------------------
-C102          2024-03        1500.00
-C101          2024-01         980.50
-...
+C003          2025-03         310.75
+C001          2025-02         200.00
+C001          2025-01         165.75
+C002          2025-01          80.00
 
 Skipped 6 invalid row(s):
-  line 6: amount is not a number: 'abc'
-  ...
+  line 6: amount must be positive: -10
+  line 7: amount is not a number: 'abc'
+  line 8: invalid created_at: '2025/02/11'
+  line 9: duplicate order_id '2'
+  line 10: missing order_id
+  line 11: missing customer_id
 ```
+
+`line` raqami CSV faylidagi satr raqamiga mos keladi (1-satr sarlavha, shuning uchun ma'lumotlar 2-satrdan boshlanadi).
+
+## Xatoliklar
+
+Skript quyidagi hollarda xabar chiqarib, to'xtaydi:
+
+- fayl topilmasa: `Error: file '...' not found.`
+- majburiy ustun yetishmasa: `Error: missing columns in CSV: ...`
+
+## Kod tuzilishi
+
+- `parse_date(value)` — sanani qo'llab-quvvatlanadigan formatlar bo'yicha o'qiydi, topilmasa `None` qaytaradi
+- `validate_row(row, seen_order_ids)` — bitta qatorni tekshiradi, `(toza_qiymatlar, None)` yoki `(None, sabab)` qaytaradi
+- `main(path)` — faylni o'qiydi, daromadni `defaultdict` ichida yig'adi, hisobotlarni chop etadi
+
+## Cheklovlar
+
+- Butun fayl qator-ma'lumotlari emas, faqat yig'indilar xotirada saqlanadi, shuning uchun katta fayllar uchun ham mos
+- Valyuta ayirboshlash yo'q, barcha `amount` bir xil valyutada deb qabul qilinadi
+- Satr raqami hisobotda bir qatorli yozuvlar uchun aniq (CSV ichida ko'p qatorli maydon bo'lsa, raqam farq qilishi mumkin)
