@@ -45,7 +45,7 @@ def validate_row(row, seen_order_ids):
 
 
 def main(path="orders.csv"):
-    revenue = defaultdict(float)  # (customer_id, month) -> total
+    revenue = defaultdict(float)
     invalid_rows = []
     seen_order_ids = set()
 
@@ -60,7 +60,7 @@ def main(path="orders.csv"):
         if missing:
             sys.exit(f"Error: missing columns in CSV: {', '.join(missing)}")
 
-        for line_no, row in enumerate(reader, start=2):  # line 1 is the header
+        for line_no, row in enumerate(reader, start=2):
             clean, reason = validate_row(row, seen_order_ids)
             if reason:
                 invalid_rows.append((line_no, reason))
@@ -69,7 +69,6 @@ def main(path="orders.csv"):
             seen_order_ids.add(order_id)
             revenue[(customer_id, month)] += amount
 
-    # Revenue report, highest revenue first
     print("Revenue per customer per month")
     print(f"{'customer_id':<14}{'month':<10}{'revenue':>12}")
     print("-" * 36)
@@ -78,7 +77,6 @@ def main(path="orders.csv"):
     ):
         print(f"{customer_id:<14}{month:<10}{total:>12.2f}")
 
-    # Invalid rows report
     print(f"\nSkipped {len(invalid_rows)} invalid row(s):")
     for line_no, reason in invalid_rows:
         print(f"  line {line_no}: {reason}")

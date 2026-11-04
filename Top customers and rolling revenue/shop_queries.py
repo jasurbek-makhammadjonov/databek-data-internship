@@ -29,8 +29,8 @@ CREATE TABLE products (
 CREATE TABLE orders (
     order_id    INTEGER PRIMARY KEY,
     customer_id INTEGER NOT NULL REFERENCES customers(customer_id),
-    order_date  TEXT NOT NULL,            -- YYYY-MM-DD
-    status      TEXT NOT NULL             -- completed / shipped / cancelled
+    order_date  TEXT NOT NULL,            
+    status      TEXT NOT NULL             
 );
 CREATE TABLE order_items (
     order_item_id INTEGER PRIMARY KEY,
@@ -59,7 +59,7 @@ def fill_fake_data(con: sqlite3.Connection, n_customers=40, n_orders=400):
     end = date(2025, 6, 30)
     span = (end - start).days
 
-    # customers
+
     for cid in range(1, n_customers + 1):
         name = f"{random.choice(FIRST)} {random.choice(LAST)}"
         cur.execute(
@@ -68,7 +68,7 @@ def fill_fake_data(con: sqlite3.Connection, n_customers=40, n_orders=400):
              (start - timedelta(days=random.randint(1, 300))).isoformat()),
         )
 
-    # products
+
     pid = 1
     prices = {}
     for cat, items in CATEGORIES.items():
@@ -77,7 +77,6 @@ def fill_fake_data(con: sqlite3.Connection, n_customers=40, n_orders=400):
             prices[pid] = price
             pid += 1
 
-    # Oxirgi 6 ta mijoz hech qachon buyurtma bermaydi (4-so'rov uchun)
     active_customers = list(range(1, n_customers - 5))
 
     item_id = 1
