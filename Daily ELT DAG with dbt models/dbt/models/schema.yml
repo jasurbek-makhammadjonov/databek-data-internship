@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_orders
+
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+
+  - name: daily_revenue
+
+    columns:
+      - name: order_date
+        tests:
+          - unique
+          - not_null
+
+      - name: daily_revenue
+        tests:
+          - not_null

@@ -5,9 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816559e8-4a58-430d-9a13-0e033348eceb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dags/daily_revenue_dag.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dbt/dbt_project.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dbt/models/marts/daily_revenue.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dbt/models/schema.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dbt/models/staging/stg_orders.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dbt/profiles.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/scripts/load_orders.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/sql/create_source_table.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/sql/create_staging_table.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/databek_internship_tasks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/databek_internship_tasks.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parse and aggregate order logs/revenue_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parse and aggregate order logs/revenue_report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Top customers and rolling revenue/shop_queries.py" beforeDir="false" afterPath="$PROJECT_DIR$/Top customers and rolling revenue/shop_queries.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +27,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="11" />
+    <option name="cachedIndexableFilesCount" value="18" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -67,8 +79,10 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "python.packages.toolwindow.project.migrated.to.right.top.v2": "true"
@@ -91,7 +105,9 @@
       <updated>1793525126612</updated>
       <workItem from="1793525127643" duration="3702000" />
       <workItem from="1793547475771" duration="15000" />
-      <workItem from="1793779471870" duration="2186000" />
+      <workItem from="1793779471870" duration="3138000" />
+      <workItem from="1793890608791" duration="94000" />
+      <workItem from="1794319905588" duration="1163000" />
     </task>
     <servers />
   </component>

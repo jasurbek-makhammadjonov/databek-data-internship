@@ -1,0 +1,12 @@
+name: revenue_project
+version: "1.0"
+
+profile: revenue_profile
+
+models:
+  revenue_project:
+    staging:
+      materialized: view
+
+    marts:
+      materialized: table
