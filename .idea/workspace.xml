@@ -5,20 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816559e8-4a58-430d-9a13-0e033348eceb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dags/daily_revenue_dag.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dbt/dbt_project.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dbt/models/marts/daily_revenue.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dbt/models/schema.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dbt/models/staging/stg_orders.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/dbt/profiles.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/scripts/load_orders.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/sql/create_source_table.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Daily ELT DAG with dbt models/sql/create_staging_table.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/databek_internship_tasks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/databek_internship_tasks.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HR Database Project/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HR Database Project/run_all.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HR Database Project/sql/01_database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HR Database Project/sql/02_sequence.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HR Database Project/sql/03_tables.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HR Database Project/sql/04_data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HR Database Project/sql/05_tests.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sessionize clickstream with PySpark/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sessionize clickstream with PySpark/data/clickstream.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sessionize clickstream with PySpark/requirements" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sessionize clickstream with PySpark/sessionization.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Store Database Project/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Store Database Project/store.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lesson_practise/pyspark_practise.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +27,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="18" />
+    <option name="cachedIndexableFilesCount" value="32" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -67,27 +67,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.revenue_report.executor": "Run",
-    "Python.shop_queries.executor": "Run",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.revenue_report.executor&quot;: &quot;Run&quot;,
+    &quot;Python.shop_queries.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -108,6 +108,9 @@
       <workItem from="1793779471870" duration="3138000" />
       <workItem from="1793890608791" duration="94000" />
       <workItem from="1794319905588" duration="1163000" />
+      <workItem from="1794534101453" duration="90000" />
+      <workItem from="1794534208836" duration="601000" />
+      <workItem from="1794575348693" duration="1814000" />
     </task>
     <servers />
   </component>

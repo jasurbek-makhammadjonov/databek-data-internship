@@ -1,0 +1,7 @@
+USE Store;
+GO
+CREATE SEQUENCE dbo.seq_emp_code
+    AS INT
+    START WITH 1
+    INCREMENT BY 1;
+GO
